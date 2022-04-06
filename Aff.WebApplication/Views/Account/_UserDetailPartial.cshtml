@@ -1,0 +1,148 @@
+﻿@model Aff.Models.Models.UserDetail
+<div class="row col-12" style=" margin-bottom: 1rem;">
+    @*f0 . floor revenue*@
+    @if (Model != null && Model.UserModel != null)
+    {
+        <div class="row col-12 title-content group-parrent" data="0" data-status="false">
+            <span>Doanh thu tầng F0</span>
+        </div>
+        <div class="f0-row row col-12 group0" style="padding: 1rem;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">SDT</th>
+                        <th scope="col">Ngày tạo</th>
+                        <th scope="col">Triết khấu(%)</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Tiền thực</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var index = 0;
+                    }
+                    @foreach (var item in Model.UserModel)
+                    {
+                        index++;
+                        <tr>
+                            <th scope="row">
+                                @index
+                            </th>
+                            <td>
+                                @item.FullName
+                            </td>
+                            <td>
+                                @item.Phone
+                            </td>
+                            <td>
+                                @item.CreatedDate
+                            </td>
+                            <td>
+                                @item.ProfitPercentage
+                            </td>
+                            <td>
+                                @string.Format("{0:0,0}", item.TotalMoney)
+                            </td>
+                            <td>
+                                @string.Format("{0:0,0}", item.TotalBalanceBonus)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="col-12">
+                <div class="container">
+                    <div class="row justify-content-end">
+                        <div class="col-2">
+                            <b>Tổng tiền:</b><b>@string.Format("{0:0,0}", Model.UserModel.Sum(c => c.TotalMoney))</b>
+                        </div>
+                        <div class="col-2">
+                            <b>Tổng tiền thực:</b><b>@string.Format("{0:0,0}", Model.UserModel.Sum(c => c.TotalBalanceBonus))</b>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (Model != null && Model.GroupUsers != null)
+{
+    var indexGroup = 0;
+    foreach (var itemGroup in Model.GroupUsers.OrderBy(c=>c.Level).ToList())
+    {
+        indexGroup++;
+        if (itemGroup.UserItems != null)
+        {
+            var groupClass = "group" + itemGroup.Level;
+            var stringUserLevel = "Doanh thu tầng F" + itemGroup.Level;
+            <div class="row col-12" style=" margin-bottom: 1rem;">
+                <div class="row col-12 title-content group-parrent" data="@itemGroup.Level" data-status="false">
+                    <span>@stringUserLevel</span>
+                </div>
+                <div class="f0-row row col-12 @groupClass" style="padding: 1rem;">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên tài khoản</th>
+                                <th scope="col">SDT</th>
+                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Tổng tiền</th>
+                                <th scope="col">Tiền thực</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var index = 0;
+                            }
+                            @foreach (var item in itemGroup.UserItems)
+                            {
+                                index++;
+                                <tr>
+                                    <th scope="row">
+                                        @index
+                                    </th>
+                                    <td>
+                                        @item.FullName
+                                    </td>
+                                    <td>
+                                        @item.Phone
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+                                    <td>
+                                        @string.Format("{0:0,0}", item.TotalMoney)
+                                    </td>
+                                    <td>
+                                        @string.Format("{0:0,0}", item.TotalBalanceBonus)
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="col-2">
+                                    <b>Tổng tiền:</b><b>@string.Format("{0:0,0}", itemGroup.UserItems.Sum(c => c.TotalMoney))</b>
+                                </div>
+                                <div class="col-2">
+                                    <b>Tổng tiền thực:</b><b>@string.Format("{0:0,0}", itemGroup.UserItems.Sum(c => c.TotalBalanceBonus))</b>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+    }
+}

@@ -1,0 +1,177 @@
+﻿@model Aff.Models.Models.UserModel
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="m-portlet">
+    <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="update-user-info" method="post" action="/account/UpdateUser">
+        <div class="m-portlet__body">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h5 class="m-portlet__head-text">
+                            Thông tin cá nhân
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-form__content">
+
+
+                <div class="m-alert m-alert--outline alert  @(ViewBag.IsSuccess ? "alert-success" : "alert-danger") alert-dismissible  @(string.IsNullOrEmpty(ViewBag.Message) ? "m--hide" : "")" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                    <span>@(ViewBag.Message)</span>
+                </div>
+            </div>
+            <div class="m--padding-left-30 m--padding-right-30 row">
+                <div class="col-lg-6 form-group m-form__group">
+                    <label>
+                        Họ tên:
+                    </label>
+                    <input type="text" class="form-control m-input" name="FullName" placeholder="Họ tên" data-toggle="m-tooltip" title="" value="@Model.FullName">
+                </div>
+                <div class="col-lg-6 form-group m-form__group">
+                    <label class="">
+                        Điện thoại:
+                    </label>
+
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="Phone" placeholder="Số điện thoại" value="@Model.Phone">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-bell"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group m--hide"></div>
+            </div>
+            <div class="m--padding-left-30 m--padding-right-30 row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label>
+                        Địa chỉ:
+                    </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="Address" placeholder="Địa chỉ" value="@Model.Address">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-map-marker"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label class="">
+                        Công ty:
+                    </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="Company" placeholder="Công ty" value="@Model.Company">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-bookmark-o"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group m--hide"></div>
+            </div>
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h5 class="m-portlet__head-text">
+                            Thông tin tài khoản ngân hàng
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="m--padding-left-30 m--padding-right-30 row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label>
+                        Số Tài khoản:
+                    </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="BankAccount" placeholder="Số tài khoản" value="@Model.BankAccount">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-calculator"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label class="">
+                        Tên chủ thẻ:
+                    </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="BankOwnerName" placeholder="Tên chủ thẻ" value="@Model.BankOwnerName">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-bookmark-o"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group m--hide"></div>
+            </div>
+            <div class="m--padding-left-30 m--padding-right-30 row">
+                <div class="form-group m-form__group col-lg-6" style="border-bottom: 0;">
+                    <label>
+                        Tên ngân hàng:
+                    </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="BankName" placeholder="Tên ngân hàng" value="@Model.BankName">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-info-circle"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label class="">
+                        Chi nhánh:
+                    </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <input type="text" class="form-control m-input" name="BankAddress" placeholder="Địa chỉ chi nhánh ngân hàng" value="@Model.BankAddress">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-map-marker"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+
+
+        </div>
+        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+            <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-primary">
+                            Lưu thông tin
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="window.location.href='@Url.Action("index","home")'">
+                            Hủy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/assets/scripts/form-controls.js" type="text/javascript"></script>
+}
+
+

@@ -1,0 +1,189 @@
+﻿@model Aff.Models.Models.PaymentSearchModel
+@{
+    ViewBag.Title = "AdminPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Danh sách bảng kê chuyển khoản
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <!--begin: Search Form -->
+        <div class="m-form m-form--label-align-right m--margin-top-0 m--margin-bottom-20">
+            <div class="row align-items-center">
+                <div class="col-xl-12 order-2 order-xl-1">
+                    <div class="form-group m-form__group row align-items-center">
+                        <div class="col-md-2">
+                            <div class="m-input-icon m-input-icon--left">
+                                <input type="text" class="form-control m-input m-input--solid" placeholder="Tìm kiếm..." id="generalSearch">
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span>
+                                        <i class="la la-search"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="col-10">
+                                <select class="form-control m-input form-control-sm" id="userStatusSelected" data-toggle="m-tooltip" title="" data-original-title="Trạng thái bảng kê">
+                                    <option value="1">
+                                        Đủ số dư
+                                    </option>
+                                    <option value="2">
+                                        Không đủ số dư
+                                    </option>
+                                    <option value="0">
+                                        Tất cả
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        
+                        <div class="text-right">
+                            <div class="col-12">
+                                <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air btn-show-model" data-toggle="modal" data-target="#m_modal_3" row-id="0" row-value="0">
+                                    <span>
+                                        <i class="fa fa-calendar-check-o"></i>
+                                        <span>
+                                            Xác nhận chuyển khoản
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="col-12">
+                                <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air btn-print" data-toggle="modal" data-target="#m_modal_print">
+                                    <span>
+                                        <i class="fa fa-print"></i>
+                                        <span>
+                                            In danh sách
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="col-12">
+                                <a href="#" class="btn m-btn m-btn--gradient-from-info m-btn m-btn--custom m-btn--icon m-btn--air m-btn--gradient-to-accent" id="btn-user-export">
+                                    <span>
+                                        <i class="fa fa-file-excel-o"></i>
+                                        <span>
+                                            Xuất excel
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="col-12">
+                                <a href="#" class="btn btn-info m-btn  m-btn--air" id="btn-bk-ds-export">
+                                    <span>
+                                        <i class="fa fa-file-excel-o"></i>
+                                        <span>
+                                            Xuất bảng kê chuyển khoản
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+
+                    <div class="m-separator m-separator--dashed d-xl-none"></div>
+                </div>
+            </div>
+        </div>
+        <!--end: Search Form -->
+        <!--begin: Datatable -->
+        <div class="m_datatable nopaging" id="ajax_data"></div>
+        <!--end: Datatable -->
+    </div>
+    <div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Bạn có chắc chắn đã chuyển khoản không?
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body" style="display:none;">
+
+                    <div class="form-group m-form__group row">
+                        <label class="col-4 col-form-label font-weight-bold">
+                            Số tiền đã chuyển
+                        </label>
+                        <div class="col-8">
+                            <div class="m-bootstrap-touchspin-brand">
+                                <input id="m_touchspin_2_2" type="text" class="form-control" name="amount" placeholder="Amount">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="confirmId" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="process-payment">
+                        Tiếp tục
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="modal fade" id="m_modal_print" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width:980px !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        In danh sách
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-max-height="600">
+                        <div class="d-print-block custom-print">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script src="~/assets/scripts/adminpayment-ajax.js" type="text/javascript"></script>
+}
+

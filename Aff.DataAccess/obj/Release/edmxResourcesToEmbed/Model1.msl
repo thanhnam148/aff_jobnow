@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TimaAffiliateModelStoreContainer" CdmEntityContainer="TimaAffiliateEntities">
+    <EntitySetMapping Name="tblBankAccounts">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblBankAccount">
+        <MappingFragment StoreEntitySet="tblBankAccount">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+          <ScalarProperty Name="BankOwnerName" ColumnName="BankOwnerName" />
+          <ScalarProperty Name="BankAddress" ColumnName="BankAddress" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblConfigs">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblConfig">
+        <MappingFragment StoreEntitySet="tblConfig">
+          <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+          <ScalarProperty Name="PercentRefer" ColumnName="PercentRefer" />
+          <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+          <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLoans">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblLoan">
+        <MappingFragment StoreEntitySet="tblLoan">
+          <ScalarProperty Name="ProductCreditId" ColumnName="ProductCreditId" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPayments">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblPayment">
+        <MappingFragment StoreEntitySet="tblPayment">
+          <ScalarProperty Name="AccountInfo" ColumnName="AccountInfo" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="Comment3" ColumnName="Comment3" />
+          <ScalarProperty Name="Comment2" ColumnName="Comment2" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment1" />
+          <ScalarProperty Name="VerifyStatus" ColumnName="VerifyStatus" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="AmountEarning" ColumnName="AmountEarning" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblReports">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblReport">
+        <MappingFragment StoreEntitySet="tblReport">
+          <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+          <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="UserReferId" ColumnName="UserReferId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTransactions">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblTransaction">
+        <MappingFragment StoreEntitySet="tblTransaction">
+          <ScalarProperty Name="ProductCreditId" ColumnName="ProductCreditId" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+          <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+          <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="PercentRefer" ColumnName="PercentRefer" />
+          <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+          <ScalarProperty Name="EndPaymentDate" ColumnName="EndPaymentDate" />
+          <ScalarProperty Name="EndMatchingDate" ColumnName="EndMatchingDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="AvailableBalance" ColumnName="AvailableBalance" />
+          <ScalarProperty Name="TotalAmountEarning" ColumnName="TotalAmountEarning" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserReferences">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblUserReference">
+        <MappingFragment StoreEntitySet="tblUserReference">
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="AffReferenceCode" ColumnName="AffReferenceCode" />
+          <ScalarProperty Name="UserReferenceId" ColumnName="UserReferenceId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserReports">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblUserReport">
+        <MappingFragment StoreEntitySet="tblUserReport">
+          <ScalarProperty Name="DataOfMonth" ColumnName="DataOfMonth" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="TranferAmount" ColumnName="TranferAmount" />
+          <ScalarProperty Name="TotalAvailableAmount" ColumnName="TotalAvailableAmount" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserReportId" ColumnName="UserReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblViewCounts">
+      <EntityTypeMapping TypeName="TimaAffiliateModel.tblViewCount">
+        <MappingFragment StoreEntitySet="tblViewCount">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

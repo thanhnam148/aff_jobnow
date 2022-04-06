@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TimaAffiliateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBankAccount">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="250" />
+          <Property Name="BankAddress" Type="nvarchar(max)" />
+          <Property Name="BankOwnerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblConfig">
+          <Key>
+            <PropertyRef Name="ConfigId" />
+          </Key>
+          <Property Name="ConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PercentAmount" Type="float" Nullable="false" />
+          <Property Name="PercentRefer" Type="float" Nullable="false" />
+          <Property Name="ApplyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblLoan">
+          <Key>
+            <PropertyRef Name="LoanId" />
+          </Key>
+          <Property Name="LoanId" Type="bigint" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="AffCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="ProductCreditId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AmountEarning" Type="bigint" Nullable="false" />
+          <Property Name="PaymentStatus" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="VerifyStatus" Type="int" />
+          <Property Name="Comment1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Comment2" Type="nvarchar(max)" />
+          <Property Name="Comment3" Type="nvarchar(max)" />
+          <Property Name="PaymentMethod" Type="int" />
+          <Property Name="PaidDate" Type="datetime" />
+          <Property Name="AccountInfo" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblReport">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UserReferId" Type="int" />
+          <Property Name="TransactionAmount" Type="bigint" />
+          <Property Name="PercentAmount" Type="float" />
+          <Property Name="Level" Type="int" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="LoanId" Type="bigint" />
+          <Property Name="LenderId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="TransactionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="LoanId" Type="bigint" />
+          <Property Name="LenderId" Type="bigint" />
+          <Property Name="Status" Type="int" />
+          <Property Name="AffCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PercentAmount" Type="float" />
+          <Property Name="TotalAmount" Type="bigint" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="ProductCreditId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleType" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AffCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Company" Type="nvarchar(max)" />
+          <Property Name="Avatar" Type="nvarchar(max)" />
+          <Property Name="TotalAmountEarning" Type="bigint" />
+          <Property Name="AvailableBalance" Type="bigint" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="EndMatchingDate" Type="datetime" />
+          <Property Name="EndPaymentDate" Type="datetime" />
+          <Property Name="PercentAmount" Type="float" />
+          <Property Name="PercentRefer" Type="float" />
+        </EntityType>
+        <EntityType Name="tblUserReference">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserReferenceId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserReferenceId" Type="int" Nullable="false" />
+          <Property Name="AffReferenceCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Level" Type="int" />
+          <Property Name="UserCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserReport">
+          <Key>
+            <PropertyRef Name="UserReportId" />
+          </Key>
+          <Property Name="UserReportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" />
+          <Property Name="ToDate" Type="datetime" />
+          <Property Name="TotalAvailableAmount" Type="bigint" />
+          <Property Name="TranferAmount" Type="bigint" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="DataOfMonth" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblViewCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AffCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_tblBankAccount_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblBankAccount" Type="Self.tblBankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblBankAccount">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLoan_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblLoan" Type="Self.tblLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblLoan">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPayment_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblPayment" Type="Self.tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReport_tblTransaction1">
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="1" />
+          <End Role="tblReport" Type="Self.tblReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTransaction">
+              <PropertyRef Name="TransactionId" />
+            </Principal>
+            <Dependent Role="tblReport">
+              <PropertyRef Name="TransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReport_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblReport" Type="Self.tblReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblReport">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblLoan">
+          <End Role="tblLoan" Type="Self.tblLoan" Multiplicity="0..1" />
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLoan">
+              <PropertyRef Name="LoanId" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="LoanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserReference_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserReference" Type="Self.tblUserReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserReference">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserReference_tblUser1">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserReference" Type="Self.tblUserReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserReference">
+              <PropertyRef Name="UserReferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserReport_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserReport" Type="Self.tblUserReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserReport">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimaAffiliateModelStoreContainer">
+          <EntitySet Name="tblBankAccount" EntityType="Self.tblBankAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLoan" EntityType="Self.tblLoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReport" EntityType="Self.tblReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserReference" EntityType="Self.tblUserReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserReport" EntityType="Self.tblUserReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblViewCount" EntityType="Self.tblViewCount" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBankAccount_tblUser" Association="Self.FK_tblBankAccount_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblBankAccount" EntitySet="tblBankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLoan_tblUser" Association="Self.FK_tblLoan_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblLoan" EntitySet="tblLoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPayment_tblUser" Association="Self.FK_tblPayment_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblPayment" EntitySet="tblPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReport_tblTransaction1" Association="Self.FK_tblReport_tblTransaction1">
+            <End Role="tblTransaction" EntitySet="tblTransaction" />
+            <End Role="tblReport" EntitySet="tblReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReport_tblUser" Association="Self.FK_tblReport_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblReport" EntitySet="tblReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblLoan" Association="Self.FK_tblTransaction_tblLoan">
+            <End Role="tblLoan" EntitySet="tblLoan" />
+            <End Role="tblTransaction" EntitySet="tblTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblUser" Association="Self.FK_tblTransaction_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblTransaction" EntitySet="tblTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserReference_tblUser" Association="Self.FK_tblUserReference_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserReference" EntitySet="tblUserReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserReference_tblUser1" Association="Self.FK_tblUserReference_tblUser1">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserReference" EntitySet="tblUserReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserReport_tblUser" Association="Self.FK_tblUserReport_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserReport" EntitySet="tblUserReport" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TimaAffiliateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TimaAffiliateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBankAccounts" EntityType="TimaAffiliateModel.tblBankAccount" />
+          <EntitySet Name="tblConfigs" EntityType="TimaAffiliateModel.tblConfig" />
+          <EntitySet Name="tblLoans" EntityType="TimaAffiliateModel.tblLoan" />
+          <EntitySet Name="tblPayments" EntityType="TimaAffiliateModel.tblPayment" />
+          <EntitySet Name="tblReports" EntityType="TimaAffiliateModel.tblReport" />
+          <EntitySet Name="tblTransactions" EntityType="TimaAffiliateModel.tblTransaction" />
+          <EntitySet Name="tblUsers" EntityType="TimaAffiliateModel.tblUser" />
+          <EntitySet Name="tblUserReferences" EntityType="TimaAffiliateModel.tblUserReference" />
+          <EntitySet Name="tblUserReports" EntityType="TimaAffiliateModel.tblUserReport" />
+          <EntitySet Name="tblViewCounts" EntityType="TimaAffiliateModel.tblViewCount" />
+          <AssociationSet Name="FK_tblBankAccount_tblUser" Association="TimaAffiliateModel.FK_tblBankAccount_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblBankAccount" EntitySet="tblBankAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLoan_tblUser" Association="TimaAffiliateModel.FK_tblLoan_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblLoan" EntitySet="tblLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblLoan" Association="TimaAffiliateModel.FK_tblTransaction_tblLoan">
+            <End Role="tblLoan" EntitySet="tblLoans" />
+            <End Role="tblTransaction" EntitySet="tblTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPayment_tblUser" Association="TimaAffiliateModel.FK_tblPayment_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblPayment" EntitySet="tblPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReport_tblTransaction1" Association="TimaAffiliateModel.FK_tblReport_tblTransaction1">
+            <End Role="tblTransaction" EntitySet="tblTransactions" />
+            <End Role="tblReport" EntitySet="tblReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblReport_tblUser" Association="TimaAffiliateModel.FK_tblReport_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblReport" EntitySet="tblReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblUser" Association="TimaAffiliateModel.FK_tblTransaction_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblTransaction" EntitySet="tblTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserReference_tblUser" Association="TimaAffiliateModel.FK_tblUserReference_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserReference" EntitySet="tblUserReferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserReference_tblUser1" Association="TimaAffiliateModel.FK_tblUserReference_tblUser1">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserReference" EntitySet="tblUserReferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserReport_tblUser" Association="TimaAffiliateModel.FK_tblUserReport_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserReport" EntitySet="tblUserReports" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblBankAccount">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BankAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BankOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblBankAccount_tblUser" FromRole="tblBankAccount" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblConfig">
+          <Key>
+            <PropertyRef Name="ConfigId" />
+          </Key>
+          <Property Name="ConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PercentAmount" Type="Double" Nullable="false" />
+          <Property Name="PercentRefer" Type="Double" Nullable="false" />
+          <Property Name="ApplyDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblLoan">
+          <Key>
+            <PropertyRef Name="LoanId" />
+          </Key>
+          <Property Name="LoanId" Type="Int64" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AffCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="ProductCreditId" Type="Int32" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblLoan_tblUser" FromRole="tblLoan" ToRole="tblUser" />
+          <NavigationProperty Name="tblTransactions" Relationship="TimaAffiliateModel.FK_tblTransaction_tblLoan" FromRole="tblLoan" ToRole="tblTransaction" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AmountEarning" Type="Int64" Nullable="false" />
+          <Property Name="PaymentStatus" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VerifyStatus" Type="Int32" />
+          <Property Name="Comment1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Comment2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentMethod" Type="Int32" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblPayment_tblUser" FromRole="tblPayment" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblReport">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserReferId" Type="Int32" />
+          <Property Name="TransactionAmount" Type="Int64" />
+          <Property Name="PercentAmount" Type="Double" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="LoanId" Type="Int64" />
+          <Property Name="LenderId" Type="Int64" />
+          <NavigationProperty Name="tblTransaction" Relationship="TimaAffiliateModel.FK_tblReport_tblTransaction1" FromRole="tblReport" ToRole="tblTransaction" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblReport_tblUser" FromRole="tblReport" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="TransactionId" />
+          </Key>
+          <Property Name="TransactionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="LoanId" Type="Int64" />
+          <Property Name="LenderId" Type="Int64" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="AffCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PercentAmount" Type="Double" />
+          <Property Name="TotalAmount" Type="Int64" />
+          <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="ProductCreditId" Type="Int32" />
+          <NavigationProperty Name="tblLoan" Relationship="TimaAffiliateModel.FK_tblTransaction_tblLoan" FromRole="tblTransaction" ToRole="tblLoan" />
+          <NavigationProperty Name="tblReports" Relationship="TimaAffiliateModel.FK_tblReport_tblTransaction1" FromRole="tblTransaction" ToRole="tblReport" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblTransaction_tblUser" FromRole="tblTransaction" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleType" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AffCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmountEarning" Type="Int64" />
+          <Property Name="AvailableBalance" Type="Int64" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EndMatchingDate" Type="DateTime" Precision="3" />
+          <Property Name="EndPaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="PercentAmount" Type="Double" />
+          <Property Name="PercentRefer" Type="Double" />
+          <NavigationProperty Name="tblBankAccounts" Relationship="TimaAffiliateModel.FK_tblBankAccount_tblUser" FromRole="tblUser" ToRole="tblBankAccount" />
+          <NavigationProperty Name="tblLoans" Relationship="TimaAffiliateModel.FK_tblLoan_tblUser" FromRole="tblUser" ToRole="tblLoan" />
+          <NavigationProperty Name="tblPayments" Relationship="TimaAffiliateModel.FK_tblPayment_tblUser" FromRole="tblUser" ToRole="tblPayment" />
+          <NavigationProperty Name="tblReports" Relationship="TimaAffiliateModel.FK_tblReport_tblUser" FromRole="tblUser" ToRole="tblReport" />
+          <NavigationProperty Name="tblTransactions" Relationship="TimaAffiliateModel.FK_tblTransaction_tblUser" FromRole="tblUser" ToRole="tblTransaction" />
+          <NavigationProperty Name="tblUserReferences" Relationship="TimaAffiliateModel.FK_tblUserReference_tblUser" FromRole="tblUser" ToRole="tblUserReference" />
+          <NavigationProperty Name="tblUserReferences1" Relationship="TimaAffiliateModel.FK_tblUserReference_tblUser1" FromRole="tblUser" ToRole="tblUserReference" />
+          <NavigationProperty Name="tblUserReports" Relationship="TimaAffiliateModel.FK_tblUserReport_tblUser" FromRole="tblUser" ToRole="tblUserReport" />
+        </EntityType>
+        <EntityType Name="tblUserReference">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserReferenceId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserReferenceId" Type="Int32" Nullable="false" />
+          <Property Name="AffReferenceCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblUserReference_tblUser" FromRole="tblUserReference" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser1" Relationship="TimaAffiliateModel.FK_tblUserReference_tblUser1" FromRole="tblUserReference" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUserReport">
+          <Key>
+            <PropertyRef Name="UserReportId" />
+          </Key>
+          <Property Name="UserReportId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Precision="3" />
+          <Property Name="TotalAvailableAmount" Type="Int64" />
+          <Property Name="TranferAmount" Type="Int64" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DataOfMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUser" Relationship="TimaAffiliateModel.FK_tblUserReport_tblUser" FromRole="tblUserReport" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblViewCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AffCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_tblBankAccount_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="TimaAffiliateModel.tblBankAccount" Role="tblBankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblBankAccount">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLoan_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="TimaAffiliateModel.tblLoan" Role="tblLoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblLoan">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblLoan">
+          <End Type="TimaAffiliateModel.tblLoan" Role="tblLoan" Multiplicity="0..1" />
+          <End Type="TimaAffiliateModel.tblTransaction" Role="tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLoan">
+              <PropertyRef Name="LoanId" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="LoanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPayment_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="TimaAffiliateModel.tblPayment" Role="tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReport_tblTransaction1">
+          <End Type="TimaAffiliateModel.tblTransaction" Role="tblTransaction" Multiplicity="1" />
+          <End Type="TimaAffiliateModel.tblReport" Role="tblReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTransaction">
+              <PropertyRef Name="TransactionId" />
+            </Principal>
+            <Dependent Role="tblReport">
+              <PropertyRef Name="TransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblReport_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="TimaAffiliateModel.tblReport" Role="tblReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblReport">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="TimaAffiliateModel.tblTransaction" Role="tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserReference_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="TimaAffiliateModel.tblUserReference" Role="tblUserReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserReference">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserReference_tblUser1">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="TimaAffiliateModel.tblUserReference" Role="tblUserReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserReference">
+              <PropertyRef Name="UserReferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserReport_tblUser">
+          <End Type="TimaAffiliateModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="TimaAffiliateModel.tblUserReport" Role="tblUserReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserReport">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TimaAffiliateModelStoreContainer" CdmEntityContainer="TimaAffiliateEntities">
+          <EntitySetMapping Name="tblBankAccounts">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblBankAccount">
+              <MappingFragment StoreEntitySet="tblBankAccount">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankOwnerName" ColumnName="BankOwnerName" />
+                <ScalarProperty Name="BankAddress" ColumnName="BankAddress" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConfigs">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblConfig">
+              <MappingFragment StoreEntitySet="tblConfig">
+                <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+                <ScalarProperty Name="PercentRefer" ColumnName="PercentRefer" />
+                <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+                <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLoans">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblLoan">
+              <MappingFragment StoreEntitySet="tblLoan">
+                <ScalarProperty Name="ProductCreditId" ColumnName="ProductCreditId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPayments">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblPayment">
+              <MappingFragment StoreEntitySet="tblPayment">
+                <ScalarProperty Name="AccountInfo" ColumnName="AccountInfo" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="Comment3" ColumnName="Comment3" />
+                <ScalarProperty Name="Comment2" ColumnName="Comment2" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment1" />
+                <ScalarProperty Name="VerifyStatus" ColumnName="VerifyStatus" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="AmountEarning" ColumnName="AmountEarning" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReports">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblReport">
+              <MappingFragment StoreEntitySet="tblReport">
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="UserReferId" ColumnName="UserReferId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTransactions">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblTransaction">
+              <MappingFragment StoreEntitySet="tblTransaction">
+                <ScalarProperty Name="ProductCreditId" ColumnName="ProductCreditId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+                <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="LoanId" ColumnName="LoanId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="PercentRefer" ColumnName="PercentRefer" />
+                <ScalarProperty Name="PercentAmount" ColumnName="PercentAmount" />
+                <ScalarProperty Name="EndPaymentDate" ColumnName="EndPaymentDate" />
+                <ScalarProperty Name="EndMatchingDate" ColumnName="EndMatchingDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="AvailableBalance" ColumnName="AvailableBalance" />
+                <ScalarProperty Name="TotalAmountEarning" ColumnName="TotalAmountEarning" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserReferences">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblUserReference">
+              <MappingFragment StoreEntitySet="tblUserReference">
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="AffReferenceCode" ColumnName="AffReferenceCode" />
+                <ScalarProperty Name="UserReferenceId" ColumnName="UserReferenceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserReports">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblUserReport">
+              <MappingFragment StoreEntitySet="tblUserReport">
+                <ScalarProperty Name="DataOfMonth" ColumnName="DataOfMonth" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="TranferAmount" ColumnName="TranferAmount" />
+                <ScalarProperty Name="TotalAvailableAmount" ColumnName="TotalAvailableAmount" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserReportId" ColumnName="UserReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblViewCounts">
+            <EntityTypeMapping TypeName="TimaAffiliateModel.tblViewCount">
+              <MappingFragment StoreEntitySet="tblViewCount">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="AffCode" ColumnName="AffCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

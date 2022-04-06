@@ -1,0 +1,181 @@
+﻿@model Aff.WebApplication.Models.VerifyCodeViewModel
+@{
+    ViewBag.Title = "LinkRefer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var banner1 = "<a title='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' target='_blank' href='"+ ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode + "' ><img src='" + ViewBag.BannerDomain + "/Content/banner/BANNER-728X90.jpg' alt='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' /></a>";
+    var banner2 = "<a title='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' target='_blank' href='" + ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode + "' ><img src='" + ViewBag.BannerDomain + "/Content/banner/BANNER-336X280.jpg' alt='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' /></a>";
+    var banner3 = "<a title='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' target='_blank' href='" + ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode + "' ><img src='" + ViewBag.BannerDomain + "/Content/banner/BANNER-300x250.jpg' alt='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' /></a>";
+    var banner4 = "<a title='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' target='_blank' href='" + ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode + "' ><img src='" + ViewBag.BannerDomain + "/Content/banner/banner-120x600.jpg' alt='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' /></a>";
+    var banner5 = "<a title='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' target='_blank' href='" + ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode + "' ><img src='" + ViewBag.BannerDomain + "/Content/banner/banner-160x600.jpg' alt='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' /></a>";
+    var banner6 = "<a title='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' target='_blank' href='" + ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode + "' ><img src='" + ViewBag.BannerDomain + "/Content/banner/banner-468x60.jpg' alt='JobNow - Hệ thống tuyển dụng nhân sự uy tín nhất Việt Nam' /></a>";
+}
+
+ 
+ 
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Quản lý Link giới thiệu
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_1" role="tab" aria-selected="true">
+                    Referrals Link
+                </a>
+                
+            </li>
+             
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="m_tabs_6_1">
+                <div class="input-group m-input-group m-input-group--pill">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <input type="text" aria-describedby="basic-addon1" class="form-control m-input" name="txtReferrals" id="txtReferrals" value="@(ViewBag.ReferralsDomain + "?rf=" + ViewBag.AffCode)" />
+                </div>
+                <p style="font-style:italic; color:#ccc;">Bạn sẽ nhận được hoa hồng 10% số tiền của người đăng ký tham gia hệ thống qua link giới thiệu này!</p>
+            </div>
+             
+        </div>
+
+        <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_2" role="tab" aria-selected="false">
+                    Affiliate Link
+                </a>
+                
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="m_tabs_6_2">
+                <div class="tab-pane active" id="m_tabs_6_1" role="tabpanel">
+                    <div class="input-group m-input-group m-input-group--pill">
+                        <span class="input-group-addon" id="basic-addon2">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <input type="text" aria-describedby="basic-addon2" class="form-control m-input" name="txtAffiliate" id="txtAffiliate" value="@(ViewBag.AffiliateDomain + "?aff=" + ViewBag.AffCode)" />
+                    </div>
+                    <p style="font-style:italic; color:#ccc;">Bạn sẽ nhận được hoa hồng khi có người đăng ký mua khóa học qua link này và khóa học được bán thành công trên JobNow!</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#btabs1" role="tab" aria-selected="false">
+                    Banner 728x90
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#btabs2" role="tab" aria-selected="false">
+                    Banner 336x280
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#btabs3" role="tab" aria-selected="false">
+                    Banner 300x250
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#btabs4" role="tab" aria-selected="false">
+                    Banner 120x600
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#btabs5" role="tab" aria-selected="false">
+                    Banner 160x600
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#btabs6" role="tab" aria-selected="false">
+                    Banner 468x60
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            
+                <div class="tab-pane active" id="btabs1" role="tabpanel">
+                    <div class="input-group m-input-group m-input-group--pill m--margin-bottom-10">
+                        @Html.Raw(banner1)
+                        <span class="input-group-addon" id="basic-addon2">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <input type="text" aria-describedby="basic-addon2" class="form-control m-input txtbanner"   value="@banner1" />
+
+                    </div>
+                 </div>
+            <div class="tab-pane " id="btabs2" role="tabpanel">
+
+                <div class="input-group m-input-group m-input-group--pill  m--margin-bottom-10" ">
+                    @Html.Raw(banner2)
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <input type="text" aria-describedby="basic-addon2" class="form-control m-input txtbanner" value="@banner2" />
+
+                </div>
+            </div>
+            <div class="tab-pane " id="btabs3" role="tabpanel">
+                <div class="input-group m-input-group m-input-group--pill  m--margin-bottom-10" ">
+                    @Html.Raw(banner3)
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <input type="text" aria-describedby="basic-addon2" class="form-control m-input txtbanner" value="@banner3" />
+
+                </div>
+            </div>
+            <div class="tab-pane " id="btabs4" role="tabpanel">
+                <div class="input-group m-input-group m-input-group--pill  m--margin-bottom-10" ">
+                    @Html.Raw(banner4)
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <input type="text" aria-describedby="basic-addon2" class="form-control m-input txtbanner" value="@banner4" />
+
+                </div>
+            </div>
+            <div class="tab-pane " id="btabs5" role="tabpanel">
+                <div class="input-group m-input-group m-input-group--pill  m--margin-bottom-10" ">
+                    @Html.Raw(banner5)
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <input type="text" aria-describedby="basic-addon2" class="form-control m-input txtbanner" value="@banner5" />
+
+                </div>
+            </div>
+            <div class="tab-pane " id="btabs6" role="tabpanel">
+                <div class="input-group m-input-group m-input-group--pill">
+                    @Html.Raw(banner6)
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <input type="text" aria-describedby="basic-addon2" class="form-control m-input txtbanner" value="@banner6" />
+
+                </div>
+                </div>
+            </div>
+
+            </div>
+
+</div>
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $("input[type='text']").click(function () {
+        $(this).select();
+    });
+</script>
+
+ 

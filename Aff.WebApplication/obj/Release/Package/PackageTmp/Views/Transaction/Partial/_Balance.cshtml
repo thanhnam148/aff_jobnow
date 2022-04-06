@@ -1,0 +1,129 @@
+﻿@model Aff.Models.Models.BalanceModel
+<div class="m-widget17__stats show-balance">
+    <div class="m-widget17__items m-widget17__items-col1">
+        <div class="m-widget17__item">
+            <span class="m-widget17__icon">
+                <i class="flaticon-truck m--font-brand"></i>
+            </span>
+            @if (User.Identity.IsAuthenticated && Model != null)
+            {
+                <div class="row c-balance">
+                    <div class="col-7">
+                        <span class="m-widget17__desc">
+                            Số dư hiện có (chưa bao gồm các loại phí):
+                        </span>
+                        <span class="m-widget17__subtitle m-widget1__number m--font-brand">
+                            @string.Format("{0:0,0}", (Model.TotalBalanceDirect + Model.TotalBalanceBonus - Model.PendingAmountEarning))
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <span class="m-widget17__desc">
+                            Số dư sau phí:
+                        </span>
+                        <span class="m-widget17__subtitle m-widget1__number m--font-brand">
+                            @string.Format("{0:0,0}", ((Model.TotalBalanceDirect + Model.TotalBalanceBonus - Model.PendingAmountEarning) * 0.9))
+                        </span>
+                    </div>
+                </div> 
+            }
+
+        </div>
+        <div class="m-widget17__item">
+            <span class="m-widget17__icon">
+                <i class="flaticon-pie-chart m--font-success"></i>
+            </span>
+            @if (User.Identity.IsAuthenticated && Model != null)
+            {
+                <div class="row a-balance">
+                    <div class="col-7">
+                        <span class="m-widget17__desc">
+                            Số dư khả dụng (chưa bao gồm các loại phí):
+                        </span>
+                        <span class="m-widget17__subtitle m-widget1__number m--font-success">
+                            @string.Format("{0:0,0}", (Model.AvailableBalance - Model.PendingAmountEarning))
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <span class="m-widget17__desc">
+                            Số dư sau phí:
+                        </span>
+                        <span class="m-widget17__subtitle m-widget1__number m--font-brand">
+                            @string.Format("{0:0,0}", ((Model.AvailableBalance - Model.PendingAmountEarning) * 0.9))
+                        </span>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="m-widget17__items m-widget17__items-col2">
+        <div class="m-widget17__item">
+            <span class="m-widget17__icon">
+                <i class="flaticon-cogwheel-2 m--font-info"></i>
+            </span>
+            @if (User.Identity.IsAuthenticated && Model != null)
+            {
+                <span class="m-widget17__desc">
+                    Thu nhập từ liên kết trực tiếp:
+                </span>
+                <span class="m-widget17__subtitle m-widget1__number m--font-brand">
+                    @string.Format("{0:0,0}", (Model.TotalBalanceDirect))
+                </span>
+            }
+
+        </div>
+        <div class="m-widget17__item">
+            <span class="m-widget17__icon">
+                <i class="flaticon-lifebuoy m--font-info"></i>
+            </span>
+            @if (User.Identity.IsAuthenticated && Model != null)
+            {
+                <span class="m-widget17__desc">
+                    Thu nhập từ mã giới thiệu:
+                </span>
+                <span class="m-widget17__subtitle m-widget1__number m--font-success">
+                    @string.Format("{0:0,0}", (Model.TotalBalanceBonus))
+                </span>
+            }
+
+        </div>
+    </div>
+
+    <div class="m-widget17__items m-widget17__items-col2">
+        <div class="m-widget17__item">
+            <span class="m-widget17__icon">
+                <i class="flaticon-time m--font-danger"></i>
+            </span>
+            @if (User.Identity.IsAuthenticated && Model != null)
+            {
+                <span class="m-widget17__desc">
+                    Số tiền đang chờ rút:
+                </span>
+                <span class="m-widget17__subtitle m-widget1__number m--font-brand">
+                    @string.Format("{0:0,0}", (Model.PendingAmountEarning))
+                </span>
+            }
+
+        </div>
+        <div class="m-widget17__item">
+            <span class="m-widget17__icon">
+                <i class="flaticon-paper-plane m--font-info"></i>
+            </span>
+            @if (User.Identity.IsAuthenticated && Model != null)
+            {
+                <span class="m-widget17__desc">
+                    Số tiền đã rút:
+                </span>
+                <span class="m-widget17__subtitle m-widget1__number m--font-success">
+                    @string.Format("{0:0,0}", (Model.TotalAmountEarning))
+                </span>
+            }
+
+        </div>
+    </div>
+    
+    
+
+</div>
+

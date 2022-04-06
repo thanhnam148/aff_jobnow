@@ -1,0 +1,55 @@
+﻿@model Aff.Models.Models.PaymentSearchModel
+
+<div class="datatable-scroll">
+    <table class="table order table-bordered dataTable no-footer" role="grid">
+        <thead>
+            <tr role="row">
+                <th class="task-deadline">Mã đơn hàng</th>
+                <th class="task-deadline" style="width:30%;">Khách hàng</th>
+                <th class="task-deadline">Người nhận</th>
+                <th class="task-deadline">Trạng thái</th>
+                <th class="task-deadline">Thời gian</th>
+                <th class="task-deadline" colspan="2" style="width:20%">Tác vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Payments != null && Model.Payments.Any())
+            {
+                foreach (var item in Model.Payments)
+                {
+                    var parent = Guid.NewGuid();
+                    <tr role="row" id="@parent">
+                        <td class="text-center"><b>@item.InvoiceNumber</b></td>
+                        <td style="text-align:left">
+                            <b>Họ và tên:</b>
+                            <a href="javascript:void(0)" class="customer">@item.CustomerEmail</a>
+                            <br />
+                            <b>Số điện thoại: </b>@item.CustomerTel
+                            <br />
+                            <b>Email:</b>
+                            <a>@item.CustomerTel</a>
+                        </td>
+                        <td class="text-center">
+                            <b>@item.AdminUserName</b>
+                        </td>
+
+                        <td class="text-center">
+                            @Html.Partial("~/Views/Order/Partial/_OrderStatus.cshtml", item)
+                        </td>
+                        <td class="text-center">@Html.FormatDate(item.CreatedUTCDate)</td>
+                        <td class="text-center" colspan="2">
+                            <a href="/Order/Detail?orderId=@item.OrderId" data-id="@item.OrderId" class="label label-info">Xem</a>
+                            <a href="javascript:void(0)" data-invoice-number="@item.InvoiceNumber" data-id="@item.OrderId" class="label label-warning restoreOrder">Khôi phục</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr role="row">
+                    <td colspan="6">Không có dữ liệu</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

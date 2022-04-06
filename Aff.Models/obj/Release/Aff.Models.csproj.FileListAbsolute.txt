@@ -1,0 +1,17 @@
+E:\Setup\TimaProject\Aff.Models\bin\Release\Aff.Models.dll
+E:\Setup\TimaProject\Aff.Models\bin\Release\Aff.Models.pdb
+E:\Setup\TimaProject\Aff.Models\obj\Release\Aff.Models.dll
+E:\Setup\TimaProject\Aff.Models\obj\Release\Aff.Models.pdb
+E:\Setup\TimaProject\Aff.Models\obj\Release\Aff.Models.csprojResolveAssemblyReference.cache
+E:\Project\Aff\SoftwateAffiliate\SoftwateAffiliate\Aff.Models\bin\Release\Aff.Models.dll
+E:\Project\Aff\SoftwateAffiliate\SoftwateAffiliate\Aff.Models\bin\Release\Aff.Models.pdb
+E:\Project\Aff\SoftwateAffiliate\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.csprojAssemblyReference.cache
+E:\Project\Aff\SoftwateAffiliate\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.csproj.CoreCompileInputs.cache
+E:\Project\Aff\SoftwateAffiliate\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.dll
+E:\Project\Aff\SoftwateAffiliate\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.pdb
+E:\Project\Aff\SoftwateAffiliate_Gap\SoftwateAffiliate\Aff.Models\bin\Release\Aff.Models.dll
+E:\Project\Aff\SoftwateAffiliate_Gap\SoftwateAffiliate\Aff.Models\bin\Release\Aff.Models.pdb
+E:\Project\Aff\SoftwateAffiliate_Gap\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.csproj.AssemblyReference.cache
+E:\Project\Aff\SoftwateAffiliate_Gap\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.csproj.CoreCompileInputs.cache
+E:\Project\Aff\SoftwateAffiliate_Gap\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.dll
+E:\Project\Aff\SoftwateAffiliate_Gap\SoftwateAffiliate\Aff.Models\obj\Release\Aff.Models.pdb

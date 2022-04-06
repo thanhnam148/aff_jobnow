@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimaAffiliateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblBankAccount">
+    <Key>
+      <PropertyRef Name="BankId" />
+    </Key>
+    <Property Name="BankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="250" />
+    <Property Name="BankAddress" Type="nvarchar(max)" />
+    <Property Name="BankOwnerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankAccount" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblConfig">
+    <Key>
+      <PropertyRef Name="ConfigId" />
+    </Key>
+    <Property Name="ConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PercentAmount" Type="float" Nullable="false" />
+    <Property Name="PercentRefer" Type="float" Nullable="false" />
+    <Property Name="ApplyDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblLoan">
+    <Key>
+      <PropertyRef Name="LoanId" />
+    </Key>
+    <Property Name="LoanId" Type="bigint" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="AffCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount" Type="bigint" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="ProductCreditId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblPayment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AmountEarning" Type="bigint" Nullable="false" />
+    <Property Name="PaymentStatus" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="VerifyStatus" Type="int" />
+    <Property Name="Comment1" Type="nvarchar" MaxLength="500" />
+    <Property Name="Comment2" Type="nvarchar(max)" />
+    <Property Name="Comment3" Type="nvarchar(max)" />
+    <Property Name="PaymentMethod" Type="int" />
+    <Property Name="PaidDate" Type="datetime" />
+    <Property Name="AccountInfo" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblReport">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionId" Type="bigint" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UserReferId" Type="int" />
+    <Property Name="TransactionAmount" Type="bigint" />
+    <Property Name="PercentAmount" Type="float" />
+    <Property Name="Level" Type="int" />
+    <Property Name="Amount" Type="bigint" />
+    <Property Name="LoanId" Type="bigint" />
+    <Property Name="LenderId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tblTransaction">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="LoanId" Type="bigint" />
+    <Property Name="LenderId" Type="bigint" />
+    <Property Name="Status" Type="int" />
+    <Property Name="AffCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentAmount" Type="float" />
+    <Property Name="TotalAmount" Type="bigint" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="ProductCreditId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleType" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="AffCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Company" Type="nvarchar(max)" />
+    <Property Name="Avatar" Type="nvarchar(max)" />
+    <Property Name="TotalAmountEarning" Type="bigint" />
+    <Property Name="AvailableBalance" Type="bigint" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="EndMatchingDate" Type="datetime" />
+    <Property Name="EndPaymentDate" Type="datetime" />
+    <Property Name="PercentAmount" Type="float" />
+    <Property Name="PercentRefer" Type="float" />
+  </EntityType>
+  <EntityType Name="tblUserReference">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="UserReferenceId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserReferenceId" Type="int" Nullable="false" />
+    <Property Name="AffReferenceCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Level" Type="int" />
+    <Property Name="UserCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUserReport">
+    <Key>
+      <PropertyRef Name="UserReportId" />
+    </Key>
+    <Property Name="UserReportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FromDate" Type="datetime" />
+    <Property Name="ToDate" Type="datetime" />
+    <Property Name="TotalAvailableAmount" Type="bigint" />
+    <Property Name="TranferAmount" Type="bigint" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="DataOfMonth" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblViewCount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AffCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IpAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Count" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_tblBankAccount_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblBankAccount" Type="Self.tblBankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblBankAccount">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLoan_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblLoan" Type="Self.tblLoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblLoan">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPayment_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblPayment" Type="Self.tblPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblPayment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblReport_tblTransaction1">
+    <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="1" />
+    <End Role="tblReport" Type="Self.tblReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTransaction">
+        <PropertyRef Name="TransactionId" />
+      </Principal>
+      <Dependent Role="tblReport">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblReport_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblReport" Type="Self.tblReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblReport">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTransaction_tblLoan">
+    <End Role="tblLoan" Type="Self.tblLoan" Multiplicity="0..1" />
+    <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLoan">
+        <PropertyRef Name="LoanId" />
+      </Principal>
+      <Dependent Role="tblTransaction">
+        <PropertyRef Name="LoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTransaction_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblTransaction">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserReference_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblUserReference" Type="Self.tblUserReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblUserReference">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserReference_tblUser1">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblUserReference" Type="Self.tblUserReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblUserReference">
+        <PropertyRef Name="UserReferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserReport_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblUserReport" Type="Self.tblUserReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblUserReport">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TimaAffiliateModelStoreContainer">
+    <EntitySet Name="tblBankAccount" EntityType="Self.tblBankAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblConfig" EntityType="Self.tblConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLoan" EntityType="Self.tblLoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblReport" EntityType="Self.tblReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserReference" EntityType="Self.tblUserReference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserReport" EntityType="Self.tblUserReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblViewCount" EntityType="Self.tblViewCount" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblBankAccount_tblUser" Association="Self.FK_tblBankAccount_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblBankAccount" EntitySet="tblBankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLoan_tblUser" Association="Self.FK_tblLoan_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblLoan" EntitySet="tblLoan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPayment_tblUser" Association="Self.FK_tblPayment_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblPayment" EntitySet="tblPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblReport_tblTransaction1" Association="Self.FK_tblReport_tblTransaction1">
+      <End Role="tblTransaction" EntitySet="tblTransaction" />
+      <End Role="tblReport" EntitySet="tblReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblReport_tblUser" Association="Self.FK_tblReport_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblReport" EntitySet="tblReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTransaction_tblLoan" Association="Self.FK_tblTransaction_tblLoan">
+      <End Role="tblLoan" EntitySet="tblLoan" />
+      <End Role="tblTransaction" EntitySet="tblTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTransaction_tblUser" Association="Self.FK_tblTransaction_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblTransaction" EntitySet="tblTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserReference_tblUser" Association="Self.FK_tblUserReference_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblUserReference" EntitySet="tblUserReference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserReference_tblUser1" Association="Self.FK_tblUserReference_tblUser1">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblUserReference" EntitySet="tblUserReference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserReport_tblUser" Association="Self.FK_tblUserReport_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblUserReport" EntitySet="tblUserReport" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

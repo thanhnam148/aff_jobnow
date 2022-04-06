@@ -1,0 +1,274 @@
+﻿@model Aff.Models.Models.UserSearchIndexModel
+@using Aff.WebApplication.Configurations;
+
+@{
+    ViewBag.Title = "IndexUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<style type="text/css">
+    .title-main {
+        padding: 1rem;
+        background: #e7e8ed;
+    }
+
+    .fa-caret-right {
+        margin-right: 1rem;
+    }
+    .item-main {
+        cursor: pointer;
+        padding: 1rem;
+        border-bottom: 1px solid #00000014;
+    }
+
+
+    .title-detail {
+        background: #e7e8ed;
+    }
+
+    a {
+        padding: 0.5rem;
+        border-radius: 12rem;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .paging-index li {
+        float: left;
+    }
+
+    .paging-index {
+        color: #898b96;
+        background: white;
+    }
+    .email-content{
+        display: inline-block;
+        width: 10rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Danh sách người dùng
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <!--begin: Search Form -->
+        <div class="m-form m-form--label-align-right m--margin-top-0 m--margin-bottom-20">
+            <div class="row align-items-center">
+                <div class="col-xl-8 order-2 order-xl-1">
+                    <div class="form-group m-form__group row align-items-center">
+                        <div class="col-md-4">
+                            <div class="m-input-icon m-input-icon--left">
+                                <input type="text" class="form-control m-input m-input--solid" placeholder="Tìm kiếm..." id="generalSearch">
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span>
+                                        <i class="la la-search"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <button class="btn btn-info" id="export-exel">Xuất file Exel</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*title table*@
+        <div class="table-main">
+            <div class="row title-main">
+                <div class="col-2">
+                    <span><b>ID</b></span>
+                </div>
+                <div class="col-2">
+                    <span><b>Tên thành viên</b></span>
+                </div>
+                <div class="col-2">
+                    <span><b>Email</b></span>
+                </div>
+                <div class="col-2">
+                    <span><b>Điện thoại</b></span>
+                </div>
+                <div class="col-2">
+                    <span><b>AFFCode</b></span>
+                </div>
+                <div class="col-2">
+                    <span><b>Địa chỉ</b></span>
+                </div>
+            </div>
+        </div>
+        @*end title table*@
+        <div class="main-user-table">
+            @Html.Partial("_tableUserPartial", Model)
+        </div>
+
+        <br>
+    </div>
+</div>
+@section scripts
+{
+
+    <script src="~/assets/scripts/aff.User.js"></script>
+    <script>
+
+        function onClickPaging(currentPage, sortColumn, sortDirection) {
+            var textSearch = $("#generalSearch").val();
+            var urlString = window.location.href;
+            var arrUrl = urlString.split('/');
+            $.ajax({
+                url: "/Account/SearchAccount",
+                data: {
+                    currentPage: currentPage, textSearch: textSearch, stringIndex: arrUrl[arrUrl.length - 1]
+                },
+                type: "GET",
+                success: function (response) {
+                    if (response.IsError === false && (undefined != response.HTML && "" !== response.HTML)) {
+                        $(".main-user-table").html("");
+                        $(".main-user-table").html(response.HTML);
+                    }
+                }
+            })
+        };
+        $(document).ready(function () {
+            $(document).on("change", "#generalSearch", function () {
+                onClickPaging(1, "", "");
+
+            });
+
+            $(document).on("click", ".item-main", function () {
+                var data = $(this).attr('data');
+                var element = $(this);
+                var dataStatus = $(this).attr('data-status');
+                var stringClass = "dataDetail" + data;
+
+                //get link
+                var urlString = window.location.href;
+                var arrUrl = urlString.split('/');
+
+                //add data
+                var dataIndex = $(this).attr('data-index');
+                if (dataStatus == "true") {
+                    $(this).attr('data-status', false);
+                    $(this).find(".fa-solid").removeClass("fa-caret-right");
+                    $(this).find(".fa-solid").addClass("fa-sort-down");
+
+                    if (data != "") {
+                        $.ajax({
+                            url: "/Account/GetByAffCode",
+                            type: "POST",
+                            data: { userId: data, level: dataIndex },
+                            success: function (res) {
+                                console.log(res);
+                                if (res.IsError === false) {
+                                    if (res.data != null) {
+                                        var paddingData = (parseInt(element.attr('data-index')) + 4);
+
+                                        //title item detail
+                                        var htmlTitle = "<div id=" + stringClass + "><div class='row table-main' style='padding-left: " + paddingData + "rem;'>";
+                                        htmlTitle += "<div class='col-2 title-detail'>";
+                                        htmlTitle += "<span><b>ID</b></span>";
+                                        htmlTitle += "</div>";
+                                        htmlTitle += "<div class='col-2 title-detail'>";
+                                        htmlTitle += "<span><b>Tên thành viên</b></span>";
+                                        htmlTitle += " </div>";
+                                        htmlTitle += "<div class='col-2 title-detail'>";
+                                        htmlTitle += "<span><b>Email</b></span>";
+                                        htmlTitle += " </div>";
+                                        htmlTitle += "<div class='col-2 title-detail'>";
+                                        htmlTitle += "<span><b>Điện thoại</b></span>";
+                                        htmlTitle += " </div>";
+                                        htmlTitle += "<div class='col-2 title-detail'>";
+                                        htmlTitle += "<span><b>AFFCode</b></span>";
+                                        htmlTitle += " </div>";
+                                        htmlTitle += "<div class='col-2 title-detail'>";
+                                        var titleString = "Địa chỉ";
+                                        if (arrUrl[arrUrl.length - 1] == "UserTier") {
+                                            titleString = "Doanh thu"
+                                        }
+                                        htmlTitle += "<span><b>" + titleString + "</b></span>";
+                                        htmlTitle += " </div></div>";
+
+
+                                        //loop item detail
+                                        var html = "<div class='container item-detail-main'><div class='row'><div class='col align-self-end'>";
+                                        for (var i = 0; i < res.data.length; i++) {
+                                            html += "<div class='row item-main' data='" + res.data[i].UserId + "' data-status='true' data-index='0' style='padding-left: " + paddingData + "rem;'>";
+                                            html += "<div class='col-2'>";
+                                            if (res.data[i].IsChild == true) {
+                                                html += "<i class='fa-solid fa-caret-right'></i>";
+                                            }
+                                            html += "<span>" + res.data[i].UserId + "</span>";
+                                            html += "</div>";
+                                            html += "<div class='col-2'>";
+                                            html += "<span class='email-content'>" + res.data[i].FullName + "</span>";
+                                            html += "</div>";
+                                            html += "<div class='col-2'>";
+                                            html += "<span class='email-content'>" + res.data[i].Email + "</span>";
+                                            html += "</div>";
+                                            html += "<div class='col-2'>";
+                                            html += "<span class='email-content'>" + res.data[i].Phone + "</span>";
+                                            html += "</div>";
+                                            html += "<div class='col-2'>";
+                                            html += "<span>" + res.data[i].AffCode + "</span>";
+                                            html += "</div>";
+                                            html += "<div class='col-2'>";
+                                            var value = res.data[i].Address;
+                                            if (arrUrl[arrUrl.length - 1] == "UserTier") {
+                                                value = res.data[i].TotalMoney;
+                                            }
+                                            if (value == "null" || value == null) {
+                                                value = "";
+                                            }
+                                            html += "<span>" + value + "</span>";
+                                            html += "</div></div>";
+                                        }
+                                        html += "</div>";
+                                        $(element).after((htmlTitle + html));
+                                    }
+                                }
+                            },
+                            error: function () {
+                                console.log("Err");
+                            }
+                        });
+                    }
+
+                } else {
+                    $(this).attr('data-status', true);
+                    $(this).find(".fa-solid").removeClass("fa-sort-down");
+                    $(this).find(".fa-solid").addClass("fa-caret-right");
+                    var idClass = "#dataDetail" + data;
+                    $(idClass).remove();
+                }
+            });
+
+  
+        });
+
+        $(document).on("click", "#export-exel", function () {
+            var dataId = $(this).attr('data');
+            var searchData = $("#generalSearch").val();
+            var urlExport = '/Account/ExportUser?textSearch=' + searchData;
+            var win = window.open(urlExport, '_blank');
+        });
+    </script>
+}
+
+

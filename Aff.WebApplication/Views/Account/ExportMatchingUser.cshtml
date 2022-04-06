@@ -1,0 +1,195 @@
+﻿@model Aff.Models.Models.ReportModelExport
+@{
+    ViewBag.Title = "ExportMatchingUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-portlet m-portlet--mobile" id="main-exportMatching">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Bảng thống kê đối soát số dư
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div class="page-content-inner">
+            <div class="page-header">
+                <img src="~/assets/icon/logo3.png" alt="logo" style="width:10rem;height:3rem; margin:0px 5px;float:left;" />
+                <div style="float:right">
+                    <p style="font-size:15px; margin-right:20px"> Ngày in: <b style="color: #059df6;">@DateTime.Now.ToString("dd/MM/yyyy")</b></p>
+                </div>
+            </div>
+
+            <h2 style="text-align:center;font-size:30px;">BÁO CÁO ĐỐI SOÁT SỐ DƯ</h2>
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <h4 style="margin: 3px 0; font-size:19px">Họ và tên: @Model.UserModel.FullName<br /></h4>
+                </div>
+                <div class="row justify-content-md-center">
+                    <h5 style="font-size:14px;">Email: @Model.UserModel.Email</h5>
+                </div>
+                <div class="row justify-content-md-center">
+                    <h5 style="font-size:14px;">AffCode: @Model.UserModel.AffCode</h5>
+                </div>
+            </div>
+
+            <!-- /breadcrumbs line -->
+            <div class="page-container" style=" margin-top: 2rem;">
+                <!-- Page content -->
+                <div class="row form-group">
+                    <div class="col-12">
+                        <h5>Doanh thu người dùng</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="tab-pane mg-top-25px">
+                                <div class="datatable-scroll datatable shadow">
+                                    <table class="table dataTable no-footer table-hover" role="grid">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="w-20">STT</th>
+                                                <th class="">Mã liên kết</th>
+                                                <th class="">Người giao dịch</th>
+                                                <th class="">Đầu kỳ</th>
+                                                <th class="">Ngày giao dịch</th>
+                                                <th class="">Lợi nhuận</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model != null && Model.UserModel != null)
+                                            {
+                                                var index = 0;
+                                                long totalPrice = 0;
+
+                                                index++;
+                                                var item = Model.UserModel;
+
+                                                <tr role="row">
+                                                    <td class="w-20">@index</td>
+                                                    <td class="">@item.AffCode</td>
+                                                    <td class="">@item.FullName</td>
+                                                    <td class="">0</td>
+                                                    <td class="">@item.CreatedDate</td>
+                                                    <td class=""><b>@string.Format("{0:0,0}", item.AvailableBalance)</b></td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <h5>Doanh thu chi tiết</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="tab-pane mg-top-25px">
+                                <div class="datatable-scroll datatable shadow">
+                                    <table class="table dataTable no-footer table-hover" role="grid">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="w-20">STT</th>
+                                                <th class="">Tên tài khoản giới thiệu</th>
+                                                <th class="">Người giao dịch</th>
+                                                <th class="">Địa chỉ</th>
+                                                <th class="">Số điện thoại</th>
+                                                <th class="">Ngày giao dịch</th>
+                                                <th class="">Lợi nhuận tổng</th>
+                                                <th class="">Lợi nhuận thực thu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model != null && Model.ReportModels != null)
+                                            {
+                                                if (Model.ReportModels.DirectRevenue != null)
+                                                {
+                                                    var index = 0;
+                                                    <tr>
+                                                        <td colspan="8"><b>Doanh thu trực tiếp</b></td>
+                                                    </tr>
+                                                    foreach (var itemReport in Model.ReportModels.DirectRevenue)
+                                                    {
+                                                        index++;
+                                                        <tr role="row">
+                                                            <td class="w-20">@index</td>
+                                                            <td class="">@(itemReport.UserRefer != null? itemReport.UserRefer.Email:"")</td>
+                                                            <td class="">@(itemReport.TransactionModel != null? itemReport.TransactionModel.FullName:"")</td>
+                                                            <td class="">@(itemReport.TransactionModel != null? itemReport.TransactionModel.Address:"")</td>
+                                                            <td class="">@(itemReport.TransactionModel != null? itemReport.TransactionModel.PhoneNumber:"")</td>
+                                                            <td class="">@itemReport.CreatedDate</td>
+                                                            <td class=""><b>@string.Format("{0:0,0}", itemReport.TotalAmount)</b></td>
+                                                            <td class=""><b>@string.Format("{0:0,0}", itemReport.Amount)</b></td>
+                                                        </tr>
+                                                    }
+                                                }
+
+                                                if (Model.ReportModels.IndirectRevenue != null)
+                                                {
+                                                    var index = 0;
+                                                    <tr>
+                                                        <td colspan="8"><b>Doanh thu gián tiếp</b></td>
+                                                    </tr>
+                                                    foreach (var itemReport in Model.ReportModels.IndirectRevenue)
+                                                    {
+                                                        index++;
+                                                        <tr role="row">
+                                                            <td class="w-20">@index</td>
+                                                            <td class="">@(itemReport.UserRefer != null? itemReport.UserRefer.Email:"")</td>
+                                                            <td class="">@(itemReport.TransactionModel != null? itemReport.TransactionModel.FullName:"")</td>
+                                                            <td class="">@(itemReport.TransactionModel != null? itemReport.TransactionModel.Address:"")</td>
+                                                            <td class="">@(itemReport.TransactionModel != null? itemReport.TransactionModel.PhoneNumber:"")</td>
+                                                            <td class="">@itemReport.CreatedDate</td>
+                                                            <td class=""><b>@string.Format("{0:0,0}", itemReport.TotalAmount)</b></td>
+                                                            <td class=""><b>@string.Format("{0:0,0}", itemReport.Amount)</b></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+            </div>
+
+        </div>
+
+    </div>
+    <div class="button-export container">
+        <div class="row">
+            <div class="col align-self-end">
+                <button class="btn btn-success" id="print-report">In báo cáo</button>
+                <button class="btn btn-info" id="save-report" data="@Request.Params["userId"]">Tải báo cáo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", "#print-report", function () {
+            var html = $("#main-exportMatching").html();
+            var myWindow = window.open("");
+            var inBtn = "<input type='button' id='inbaocao-btn' value='In báo cáo' class='btn btn-info w100' style = 'display: block ; margin : 0 auto'  onclick='window.print()'/>";
+            var cssPath = "<link href='/Assets/css/londinium-theme.css' rel='stylesheet' /> <link href='/Assets/customtable/stylesTable.css' rel='stylesheet' /> <link href='/Assets/css/customfe.css' rel='stylesheet' /> <link href='/Assets/css/custom.css' rel='stylesheet' /> <link href='/Assets/css/bootstrap.min.css' rel='stylesheet' /> <style>#inbaocao-btn{position:absolute;top:100px;right:265px}</style> <style media = 'print'>#inbaocao-btn{display: none !important;}</style>";
+            html = cssPath + html + inBtn;
+            myWindow.document.write(html);
+            myWindow.document.close()
+        })
+
+        $(document).on("click", "#save-report", function () {
+            var dataId = $(this).attr('data');
+            var urlExport = '/Account/ExportMatchingUserExel?userId=' + dataId;
+            var win = window.open(urlExport, '_blank');
+        });
+    })
+</script>
+

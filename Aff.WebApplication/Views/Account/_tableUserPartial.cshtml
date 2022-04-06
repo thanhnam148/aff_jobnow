@@ -1,0 +1,38 @@
+﻿@model Aff.Models.Models.UserSearchIndexModel
+@using Aff.WebApplication.Configurations
+@using Aff.WebApplication.Helpers
+@if (Model != null && Model.Users != null && Model.Users.Any())
+{
+    foreach (var item in Model.Users)
+    {
+        <div class="row item-main" data="@item.UserId" data-index="0" data-status="true">
+            <div class="col-2">
+                @if (item.IsChild == true)
+                {
+                    <i class="fa-solid fa-caret-right"></i>
+                }
+                <span>@item.UserId</span>
+            </div>
+            <div class="col-2">
+                <span class="email-content">@item.FullName</span>
+            </div>
+            <div class="col-2">
+                <span class="email-content">@item.Email</span>
+            </div>
+            <div class="col-2">
+                <span class="email-content">@item.Phone</span>
+            </div>
+            <div class="col-2">
+                <span>@item.AffCode</span>
+            </div>
+            <div class="col-2">
+                <span class="email-content">@item.Address</span>
+            </div>
+        </div>
+
+    }
+}
+
+<div class="m-datatable" style="display: block; padding-bottom: 2rem; padding-top: 2rem;">
+    @Html.AjaxPagingHelper("onClickPaging", Model.TotalRecords, Model.PageSize, Model.PageIndex, "", "")
+</div>

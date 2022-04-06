@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="75d4010a7cfb466a90af9df1716d22ab" Name="Diagram1">
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblBankAccount" Width="1.5" PointX="3" PointY="17.875" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblConfig" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblLoan" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblPayment" Width="1.5" PointX="3" PointY="13.5" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblReport" Width="1.5" PointX="7.5" PointY="9.5" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblTransaction" Width="1.5" PointX="5.25" PointY="7.75" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblUser" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblUserReference" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblUserReport" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="TimaAffiliateModel.tblViewCount" Width="1.5" PointX="5.75" PointY="3.75" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblBankAccount_tblUser" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblLoan_tblUser" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblTransaction_tblLoan" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblPayment_tblUser" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblReport_tblTransaction1" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblReport_tblUser" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblTransaction_tblUser" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblUserReference_tblUser" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblUserReference_tblUser1" />
+        <AssociationConnector Association="TimaAffiliateModel.FK_tblUserReport_tblUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

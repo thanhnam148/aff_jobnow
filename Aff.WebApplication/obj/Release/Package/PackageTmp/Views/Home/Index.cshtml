@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-col-xl-12">
+        <!--begin:: Widgets/Activity-->
+        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light ">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text m--font-light">
+                            Hoạt động
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <div class="m-widget17">
+                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
+                        <div class="m-widget17__chart" style="height:320px;">
+                            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                            <canvas id="m_chart_activities" width="1588" height="208" class="chartjs-render-monitor" style="display: block; width: 1588px; height: 208px;"></canvas>
+                        </div>
+                    </div>
+                    @Html.Action("Balance", "Transaction")
+                </div>
+            </div>
+        </div>
+        <!--end:: Widgets/Activity-->
+    </div>
+    
+</div>

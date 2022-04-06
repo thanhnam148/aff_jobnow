@@ -1,0 +1,217 @@
+﻿@model Aff.Models.Models.UserCommon
+<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " data-menu-vertical="true" data-menu-scrollable="false" data-menu-dropdown-timeout="500">
+    <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+        <li class="m-menu__item @(Request.Path.ToLower().Equals("/admin") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true">
+            <a href="@Url.Action("Index","Admin")" class="m-menu__link ">
+                <i class="m-menu__link-icon flaticon-line-graph"></i>
+                <span class="m-menu__link-title">
+                    <span class="m-menu__link-wrap">
+                        <span class="m-menu__link-text">
+                            Bảng điều khiển
+                        </span>
+                        <span class="m-menu__link-badge">
+                            @*<span class="m-badge m-badge--danger">
+                                    2
+                                </span>*@
+                        </span>
+                    </span>
+                </span>
+            </a>
+        </li>
+        <li class="m-menu__section">
+            <h4 class="m-menu__section-text">
+                Menu
+            </h4>
+            <i class="m-menu__section-icon flaticon-more-v3"></i>
+        </li>
+
+        <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/account/linkrefer") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+            <a href="/Account/LinkRefer" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-share"></i>
+                <span class="m-menu__link-text">
+                    Quản lý liên kết
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+        </li>
+        <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/transaction/withdraws") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+            <a href="@Url.Action("withdraws", "Transaction")" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-multimedia-1"></i>
+                <span class="m-menu__link-text">
+                    Rút tiền
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+        </li>
+        <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/payment/invoice") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+            <a href="@Url.Action("Invoice", "Payment")" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-layers"></i>
+                <span class="m-menu__link-text">
+                    Quản lý hóa đơn
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+        </li>
+        <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/transaction/statistic") || Request.Path.ToLower().Equals("/loan/statistic") || Request.Path.ToLower().Trim().Equals("/account/searchuserreff") ? Html.Raw("m-menu__item--open m-menu__item--expanded") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+            <a href="#" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-diagram"></i>
+                <span class="m-menu__link-text">
+                    Thống kê
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+            <div class="m-menu__submenu " style="">
+                <span class="m-menu__arrow"></span>
+                <ul class="m-menu__subnav">
+                    <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                        <span class="m-menu__link">
+                            <span class="m-menu__link-text">
+                                Thống kê
+                            </span>
+                        </span>
+                    </li>
+                    <li class="m-menu__item  @(Request.Path.ToLower().Equals("/loan/statistic") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true">
+                        <a href="@Url.Action("statistic","loan")" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Đơn hàng được giới thiệu
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item  @(Request.Path.ToLower().Contains("/transaction/statistic") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true">
+                        <a href="@Url.Action("statistic","transaction")" class="m-menu__link ">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Đơn hàng bán thành công
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="m-menu__item @(Request.Path.ToLower().Trim().Equals("/account/searchuserreff") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true">
+                        <a href="@Url.Action("SearchUserReff", "Account")" class="m-menu__link">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Danh sách user liên kết
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        @if (Model != null && Model.RoleType.HasValue && Model.RoleType.Value < 3)
+        {
+            <li class="m-menu__section">
+                <h4 class="m-menu__section-text">
+                    Admin
+                </h4>
+                <i class="m-menu__section-icon flaticon-more-v3"></i>
+            </li>
+
+            
+            <li class="m-menu__item m-menu__item--submenu  @(Request.Path.ToLower().Trim().Equals("/account/searchuser") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="@Url.Action("searchuser","account")" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-layers"></i>
+                    <span class="m-menu__link-text">
+                        Quản lý User
+                    </span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="m-menu__item m-menu__item--submenu  @(Request.Path.ToLower().Trim().Equals("/loan/statisticadmin") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="@Url.Action("statisticadmin","loan")" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-layers"></i>
+                    <span class="m-menu__link-text">
+                        Quản lý Đơn hàng
+                    </span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/account/matchinguser") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="@Url.Action("MatchingUser","account")" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-layers"></i>
+                    <span class="m-menu__link-text">
+                        Đối soát số dư
+                    </span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/payment/adminpayment") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                <a href="@Url.Action("AdminPayment", "Payment")" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-layers"></i>
+                    <span class="m-menu__link-text">
+                        Bảng kê chuyển khoản
+                    </span>
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+        }
+
+        <li class="m-menu__section">
+            <h4 class="m-menu__section-text">
+                Info
+            </h4>
+            <i class="m-menu__section-icon flaticon-more-v3"></i>
+        </li>
+        <li class="m-menu__item m-menu__item--submenu @(Request.Path.ToLower().Contains("/account/updateuser") || Request.Path.ToLower().Contains("/account/changepassword") ? Html.Raw("m-menu__item--open m-menu__item--expanded") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+            <a href="#" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-interface-3"></i>
+                <span class="m-menu__link-text">
+                    Cài đặt
+                </span>
+                <i class="m-menu__ver-arrow la la-angle-right"></i>
+            </a>
+            <div class="m-menu__submenu " style="">
+                <span class="m-menu__arrow"></span>
+                <ul class="m-menu__subnav">
+                    <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                        <span class="m-menu__link">
+                            <span class="m-menu__link-text">
+                                Cài đặt
+                            </span>
+                        </span>
+                    </li>
+                    <li class="m-menu__item  m-menu__item--submenu @(Request.Path.ToLower().Contains("/account/updateuser") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                        <a href="@Url.Action("UpdateUser","account")" class="m-menu__link m-menu__toggle">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Thông tin cá nhân
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-menu__item  m-menu__item--submenu @(Request.Path.ToLower().Contains("/account/changepassword") ? Html.Raw("m-menu__item--active") : Html.Raw(""))" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                        <a href="@Url.Action("changepassword", "Account")" class="m-menu__link m-menu__toggle">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Đổi mật khẩu
+                            </span>
+
+                        </a>
+                    </li>
+                    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+                        <a href="@Url.Action("LogOff", "Account")" class="m-menu__link m-menu__toggle">
+                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                            </i>
+                            <span class="m-menu__link-text">
+                                Đăng xuất
+                            </span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+</div>
